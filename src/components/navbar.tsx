@@ -1,66 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import { ReactNode } from "react";
 
-const links = [
-  { href: "/onboarding", label: "Onboarding" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/lesson", label: "Lesson" },
-  { href: "/quiz", label: "Quiz" },
-];
-
-export function Navbar() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
+export default function Navbar(): ReactNode {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <nav className="container flex h-14 items-center justify-between">
-        <Link href="/" className="font-bold">
-          AI Tutor
-        </Link>
-        <button
-          className="sm:hidden p-2"
-          onClick={() => setOpen((p) => !p)}
-          aria-label="Toggle menu"
+    <header className="sticky top-0 z-50 bg-white/70 backdrop-blur">
+      {/* --- inner container keeps 24-32 px side padding & centres max-width --- */}
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:px-8">
+        {/* Brand ---------------------------------------------------------------- */}
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight transition-colors hover:text-primary"
         >
-          <Menu className="h-6 w-6" />
-        </button>
-        <ul className="hidden sm:flex gap-6">
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className={
-                  pathname === l.href ? "font-semibold text-primary" : "text-muted-foreground"
-                }
-              >
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      {open && (
-        <ul className="sm:hidden bg-background border-t border-border px-6 pb-4 pt-2 space-y-2">
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link
-                onClick={() => setOpen(false)}
-                href={l.href}
-                className={
-                  pathname === l.href ? "font-semibold text-primary" : "text-muted-foreground"
-                }
-              >
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+          AI&nbsp;Tutor
+        </Link>
+
+        {/* Nav links ----------------------------------------------------------- */}
+        <nav className="flex gap-6 text-sm font-medium">
+          <Link href="/onboarding" className="hover:opacity-80">
+            Onboarding
+          </Link>
+          <Link href="/dashboard" className="hover:opacity-80">
+            Dashboard
+          </Link>
+          <Link href="/lesson" className="hover:opacity-80">
+            Lesson
+          </Link>
+          <Link href="/quiz" className="hover:opacity-80">
+            Quiz
+          </Link>
+        </nav>
+      </div>
     </header>
   );
-} 
+}
