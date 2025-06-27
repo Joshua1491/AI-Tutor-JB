@@ -2,7 +2,7 @@ import animate from "tailwindcss-animate";
 
 export default {
   content: [
-    "./src/**/*.{ts,tsx,js,jsx,mdx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -22,10 +22,7 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
+        primary: "#6045ff",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -38,10 +35,7 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
+        accent: "#00d4ff",
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -56,6 +50,13 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        card: "0 6px 24px -4px rgba(0,0,0,.15)",
+      },
+      backgroundImage: {
+        "hero-radial":
+          "radial-gradient(ellipse at 50% 0%, rgba(96,69,255,0.35) 0%, rgba(0,212,255,.25) 40%, transparent 70%)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -65,10 +66,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        fadeInUp: {
+          "0%": { opacity: 0, transform: "translateY(20px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        fadeInUp: "fadeInUp .6s ease-out",
       },
     },
   },
